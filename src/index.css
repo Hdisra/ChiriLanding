@@ -1,0 +1,76 @@
+@import 'tailwindcss';
+
+/*
+ * TEMA DE LA MARCA
+ * Cambia aquí los colores y tipografías y se actualiza toda la landing.
+ * Uso en clases: bg-brand-500, text-brand-600, text-ink, font-display, etc.
+ */
+@theme {
+  /* Tipografías (se cargan desde Google Fonts en index.html) */
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Fraunces', ui-serif, Georgia, serif;
+
+  /* Rosa de la marca */
+  --color-brand-50: #fff5f7;
+  --color-brand-100: #ffe8ee;
+  --color-brand-200: #ffd0dc;
+  --color-brand-300: #fba9bf;
+  --color-brand-400: #f47a9c;
+  --color-brand-500: #e8547f;
+  --color-brand-600: #d13a67;
+  --color-brand-700: #ae2b52;
+  --color-brand-800: #8c2645;
+  --color-brand-900: #5e1a2f;
+
+  /* Texto: un casi-negro cálido que combina con el rosa */
+  --color-ink: #2a1a21;
+  --color-ink-soft: #6b5560;
+
+  /* Animaciones */
+  --animate-marquee: marquee 35s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+  }
+
+  /* Deja espacio para el navbar fijo al saltar a una sección con #ancla */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  ::selection {
+    @apply bg-brand-200 text-ink;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
